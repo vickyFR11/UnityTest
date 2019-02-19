@@ -9,21 +9,31 @@ namespace Tests
 {
     public class TesteDaVicky
     {
-        // A Test behaves as an ordinary method
+        public Script julia;
+
+        public TesteDaVicky() {
+            julia = new Script();
+        }
+
         [Test]
         public void TesteDaVickySimplePasses()
         {
-            var julia = new Julia.Script();
             Equals(julia.getVicky(), "Vicky");
         }
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
+        [Test]
+        public void ChangesPositionWhenValuesPassed()
+        {
+            Vector3 expectedVector = new Vector3(10, 10, 10);
+
+            Vector3 position = julia.ChangesPosition(10, 10, 10);
+
+            Assert.AreEqual(position, expectedVector);
+        }
+
         [UnityTest]
         public IEnumerator TesteDaVickyWithEnumeratorPasses()
         {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
             yield return null;
         }
 
